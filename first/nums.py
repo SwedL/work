@@ -1,18 +1,16 @@
 
-def plus(a, b):
-    return a + b
+import csv
 
 
-def multi(a, b):
-    return a * b
+def csv_columns(filename):
+    with open(filename, 'r', encoding='utf-8') as file:
+        category_dict = {}
+        data = csv.DictReader(file)
+        for line in data:
+            for item in line:
+                category_dict[item] = category_dict.get(item, []) + [line[item]]
+        return category_dict
 
 
-def minus(a, b):
-    return a - b
 
-
-if __name__ == '__main__':
-    print(plus(2, 2))
-    print(minus(6, 2))
-    print(multi(3, 3))
-
+print(csv_columns('D:/1.csv'))
