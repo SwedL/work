@@ -1,13 +1,11 @@
 
-import csv
+import json
 
-with open('D:/student_counts.csv', 'r', encoding='utf-8') as inp_data:
-    data = list(csv.DictReader(inp_data))
-    header = [k for k in data[0].keys()]
 
-    for line in data:
-        print(line)
-    print(header)
+
+with open('D:/food_services.json', 'r', encoding='utf-8') as inp_file:
+    data = list(json.load(inp_file))
+    print(*data[0:15], sep='\n')
 
 
 
