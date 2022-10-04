@@ -1,12 +1,18 @@
 
-import json
+from zipfile import ZipFile
 
 
+def sizeof_fmt(num):
+    for x in ['B', 'KB', 'MB', 'GB']:
+        if num < 1024.0:
+            return round(num), x
+        num /= 1024.0
+    return round(num), 'TB'
 
-with open('D:/food_services.json', 'r', encoding='utf-8') as inp_file:
-    data = list(json.load(inp_file))
-    print(*data[0:15], sep='\n')
-
-
+with ZipFile('D:/desktop.zip') as zfi:
+    info = list(zfi.namelist())
+    files_info = zfi.infolist()
+    for i in range(len(info)):
+        print(info[i], *sizeof_fmt(files_info[i].file_size))
 
 
