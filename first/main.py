@@ -1,4 +1,6 @@
-from first.nums import plus
+import pickle
 
-if __name__ == '__main__':
-  print(plus(3, 3))
+
+with open('D:/file.pkl', 'rb') as inp_file:
+    obj = pickle.load(inp_file)
+    print(obj)
