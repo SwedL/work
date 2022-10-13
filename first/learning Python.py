@@ -1,5 +1,11 @@
 
-import os
+n = (1, 2)
+c = (3, 4)
+p = n + c
+print(p)
 
-os.mkdir('D:/111111111')
-os.mkdir('D:/111111111/bbbbbbbbbbbb')
+
+
+
+
+
