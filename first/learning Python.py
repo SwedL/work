@@ -1,35 +1,19 @@
 
 from collections import namedtuple
 
-User = namedtuple('User', ['name', 'surname', 'email', 'plan'])
+Player = namedtuple('Player', ['A', 'B'])
+player = Player(,)
 
-users = [User('Mary', 'Griffin', 'sonnen@yahoo.com', 'Basic'),
-         User('Brenda', 'Young', 'retoh@outlook.com', 'Silver'),
-         User('Kathleen', 'Lyons', 'balchen@att.net', 'Gold'),
-         User('Pamela', 'Hicks', 'corrada@sbcglobal.net', 'Silver'),
-         User('William', 'Townsend', 'kosact@verizon.net', 'Gold'),
-         User('Clayton', 'Morris', 'berserk@yahoo.com', 'Silver'),
-         User('Dorothy', 'Dennis', 'sequin@live.com', 'Gold'),
-         User('Tyler', 'Walker', 'noahb@comcast.net', 'Basic'),
-         User('Joseph', 'Moore', 'ylchang@sbcglobal.net', 'Silver'),
-         User('Kenneth', 'Richardson', 'tbusch@me.com', 'Bronze'),
-         User('Stephanie', 'Bush', 'neuffer@live.com', 'Gold'),
-         User('Gregory', 'Hughes', 'juliano@att.net', 'Basic'),
-         User('Tracy', 'Wallace', 'sblack@me.com', 'Silver'),
-         User('Russell', 'Smith', 'isaacson@comcast.net', 'Bronze'),
-         User('Megan', 'Patterson', 'hoangle@outlook.com', 'Basic')]
+def men_still_standing(cards):
+    dict_a = dict([(k, 0) for k in range(1, 12)])
+    dict_b = dict([(k, 0) for k in range(1, 12)])
+    print(dict_a)
+    for i in cards:
+        print(i)
 
-list_result, plan_dict = [], {'Gold': 1, 'Silver': 2, 'Bronze': 3, 'Basic': 4}
 
-for k in users:
-    plan_key = k[3]
-    tmp = k._asdict()
-    tmp.setdefault('status', plan_dict[plan_key])
-    list_result.append(tmp)
+men_still_standing(["A4Y", "A5R", "B5R", "A4Y", "B6Y"])
 
-for i in sorted(list_result, key=lambda x: (x['status'], x['email'])):
-    print(f"{i['name']} {i['surname']}\n  Email: {i['email']}\n  Plan: {i['plan']}")
-    print()
 
 
 
