@@ -1,24 +1,22 @@
-from collections import defaultdict
+from collections import OrderedDict
 
+def custom_sort(ordered_dict, by_values=False):
+    key_res = []
+    key_res = [sorted(ordered_dict, key=lambda ord: ord[0]), sorted(ordered_dict, key=lambda ord: ord[1])][by_values]
+    print(key_res)
+    for i in key_res:
+        ordered_dict.move_to_end(i)
 
-# def best_sender(messages, senders):
-#     message_sender_dict = defaultdict(int)
-#     for s, m in zip(senders, messages):
-#         if message_sender_dict[s] < len(m.split()):
-#             message_sender_dict[s] = len(m.split())
-#     list_result = [key for key, values in message_sender_dict.items() if values == message_sender_dict[sorted(message_sender_dict, key=lambda k: (message_sender_dict[k]))[-1]]]
-#     return sorted(list_result)
+data = OrderedDict(Dustin=29, Anabel=17, Brian=40, Carol=16)
+print(data)
+custom_sort(data, by_values=True)
+print(data)
 
-def best_sender(messages, senders):
-    message_sender_dict = defaultdict(int)
-    for s, m in zip(senders, messages):
-        if message_sender_dict[s] < len(m.split()):
-            message_sender_dict[s] = len(m.split())
-    return sorted(message_sender_dict, key=lambda k: (message_sender_dict[k], k))
+# data = OrderedDict(Earth=3, Mercury=1, Mars=4, Venus=2)
+# print(data)
+# custom_sort(data, by_values=True)
+#
+# print(*data.items())
 
-messages = ['Hello userTwooo', 'Hi userThree', 'Wonderful day Alice', 'Nice day userThree']
-senders = ['Alice', 'userTwo', 'userThree', 'Alice']
-
-print(best_sender(messages, senders))
 
 
