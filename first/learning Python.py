@@ -1,21 +1,7 @@
-from collections import OrderedDict
 
+from collections import Counter
 
-def custom_sort(ord_dict, by_values=False):
-    key_res = [sorted(ord_dict), sorted(ord_dict, key=lambda values: ord_dict[values])][by_values]
-    [ord_dict.move_to_end(i) for i in key_res]
-
-
-# data = OrderedDict(Dustin=29, Anabel=17, Brian=40, Carol=16)
-# print(data)
-# custom_sort(data, by_values=True)
-# print(data)
-
-data = OrderedDict(Earth=3, Mercury=1, Mars=4, Venus=2)
-print(data)
-custom_sort(data, by_values=False)
-
-print(*data.items())
-
-
-
+with open('D:/pythonzen.txt', encoding='utf-8') as file:
+    data = list(file.read().lower())
+    counter = Counter(filter(str.isalpha, data))
+    [print(f'{k}: {v}') for k, v in sorted(counter.items())]
