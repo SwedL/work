@@ -1,9 +1,12 @@
 
 from collections import Counter
 
+data = Counter('aksjaskfjsklfjdslkfjajfopewtoieqpwdpqworiiqjskanvmcxbmpewrqopkqwlmdzczmxvmvlnjpjqpkqzxvmbowiqeorewi')
 
-list1 = [len(i) for i in input().lower().split()]
-print(list1)
-counter = Counter(list1)
 
-print(sorted(counter.items(), key=))
+
+data.min_values = lambda p: p == max(data.min_values())
+
+print(data.min_values())
+
+
