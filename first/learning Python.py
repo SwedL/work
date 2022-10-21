@@ -1,14 +1,19 @@
 
-from collections import Counter
-
-data = input().split()
-list1 = list(map(lambda x: (x[0], int(x[1])), [[i for i in input().split()] for _ in range(int(input()))]))
-
-list_data = {k: list1[k] for k in data if k in list1}
-print(data)
-print(list1)
-print(list_data)
+from collections import ChainMap, Counter
 
 
+bread = {'булочка с кунжутом': 15, 'обычная булочка': 10, 'ржаная булочка': 15}
+meat = {'куриный бифштекс': 50, 'говяжий бифштекс': 70, 'рыбный бифштекс': 40}
+sauce = {'сливочно-чесночный': 15, 'кетчуп': 10, 'горчица': 10, 'барбекю': 15, 'чили': 15}
+vegetables = {'лук': 10, 'салат': 15, 'помидор': 15, 'огурцы': 10}
+toppings = {'сыр': 25, 'яйцо': 15, 'бекон': 30}
+menu = ChainMap(bread, meat, sauce, vegetables, toppings)
 
+zakaz = input().split(',')
+counter = Counter(zakaz)
+
+total = sum([menu[i]*counter[i] for i in counter])
+print(sorted(counter.most_common(), key=lambda x: x[0]))
+
+print(total)
 
