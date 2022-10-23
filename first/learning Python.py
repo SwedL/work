@@ -9,8 +9,13 @@ vegetables = {'лук': 10, 'салат': 15, 'помидор': 15, 'огурц�
 toppings = {'сыр': 25, 'яйцо': 15, 'бекон': 30}
 menu = ChainMap(bread, meat, sauce, vegetables, toppings)
 
+
 zakaz = input().split(',')
 counter = Counter(zakaz)
+
+indent = max(map(len, zakaz))
+indent_minus = indent+3+len(str(max(counter.values())))
+print(indent_minus)
 
 total = sum([menu[i]*counter[i] for i in counter])
 print(sorted(counter.most_common(), key=lambda x: x[0]))

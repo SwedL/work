@@ -1,16 +1,16 @@
 
-import csv
+from collections import ChainMap
 
+dic1 = {'red':1,'white':4}
+dic2 = {'red':9,'black':8}
+chain = ChainMap(dic1,dic2)
+print(chain)
 
-def csv_columns(filename):
-    with open(filename, 'r', encoding='utf-8') as file:
-        category_dict = {}
-        data = csv.DictReader(file)
-        for line in data:
-            for item in line:
-                category_dict[item] = category_dict.get(item, []) + [line[item]]
-        return category_dict
+new_dic={'blue':10,'yellow':12}
+chain=chain.new_child(new_dic)
 
+print(chain)
 
+chain.maps = reversed(chain.maps)
+print(chain)
 
-print(csv_columns('D:/1.csv'))
