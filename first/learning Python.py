@@ -1,12 +1,12 @@
 
 
+def reduce_fraction(fraction):
+    def nod(x=min(fraction)):
+        if fraction[0] % x == 0 and fraction[1] % x == 0:
+            return tuple(list(map(lambda i: int(i / x), fraction)))
+        else:
+            return nod(x-1)
+    return nod()
 
-def is_good_password(s):
-    if len(s) >= 9 and any(i.isdigit() for i in s) and s.upper() != s and s.lower() != s:
-        return True
-    return False
 
-print(is_good_password('41157082'))
-print(is_good_password('мойпарольсамыйлучший'))
-print(is_good_password('МойПарольСамыйЛучший111'))
-
+print(reduce_fraction([80, 120]))
