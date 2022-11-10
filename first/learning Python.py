@@ -1,7 +1,21 @@
 
-text = eval(input())
 
-print(eval({list: 'text[-1]', tuple: 'text[0]', set: 'len(text)'}[type(text)]))
+
+
+
+
+def verification(login, password, success, failure):
+    return
+
+def success(login):
+    print(f'Привет, {login}!')
+
+def failure(login, text):
+    print(f'{login}, попробуйте снова. Ошибка: {text}')
+
+verification('timyrik20', 'Beegeek314', success, failure)
+
+
 
 
 
