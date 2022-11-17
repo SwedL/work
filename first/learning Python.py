@@ -1,27 +1,45 @@
 
+from functools import wraps
 
 
-def sandwich(func):
-    def wrapper(*args, **kwargs):
-        up = '---- Верхний ломтик хлеба ----'
-        down = '---- Нижний ломтик хлеба ----'
-        print(up)
-        return func(*args, **kwargs)
-        print(down)
-        return
-    return wrapper
+def takes(*args0):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            if set(map(lambda x: type(x), (*args, *kwargs.values()))) <= set(args0):
+                return func(*args, **kwargs)
+            else:
+                raise TypeError
+        return wrapper
+    return decorator
 
 
-@sandwich
-def add_ingredients(ingredients):
-    print(' | '.join(ingredients))
+@takes(list, int, tuple, str)
+def add(a, b):
+    '''add docs'''
+    return a + b
 
-add_ingredients(['томат', 'салат', 'сыр', 'бекон'])
+print(add.__name__)
+print(add.__doc__)
+
+try:
+    print(add(a='a', b='c'))
+except TypeError as e:
+    print(type(e))
 
 
-@sandwich
-def beegeek():
-    return 'beegeek'
 
+@takes(str)
+def beegeek(word, repeat):
+    return word * repeat
 
-print(beegeek())
+try:
+    print(beegeek('beegeek', repeat=2))
+except TypeError as e:
+    print(type(e))
+
+@takes(int, str)
+def repeat_string(string, times):
+    return string * times
+
+print(repeat_string('bee', 3))
