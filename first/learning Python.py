@@ -1,21 +1,28 @@
 
 
+def get_min_max(iterable):
+    if iterable and isinstance(iterable, list):
+        return sorted(iterable)[0], sorted(iterable)[-1]
+    else:
+        try:
+            minimum, maximum = next(iterable), max(iterable)
+            return minimum, maximum
+        except StopIteration:
+            pass
 
-def get_min_max(data):
-    if data:
-        return (min(enumerate(data), key=lambda x: x[1])[0], max(enumerate(data), key=lambda x: x[1])[0])
+
+iterable = iter([])
+
+print(get_min_max(iterable))
 
 
-data = [2, 3, 8, 1, 7]
+iterable = iter(range(10))
+
+print(get_min_max(iterable))
+
+data = iter(range(100_000_000))
 
 print(get_min_max(data))
+iterable = [6, 4, 2, 33, 19, 1]
 
-
-data = [1, 1, 2, 3, 8, 8]
-
-print(get_min_max(data))
-
-data = []
-print(get_min_max(data))
-
-
+print(get_min_max(iterable))
