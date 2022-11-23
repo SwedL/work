@@ -1,45 +1,21 @@
 
-from functools import wraps
 
 
-def takes(*args0):
-    def decorator(func):
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            if set(map(lambda x: type(x), (*args, *kwargs.values()))) <= set(args0):
-                return func(*args, **kwargs)
-            else:
-                raise TypeError
-        return wrapper
-    return decorator
+def get_min_max(data):
+    if data:
+        return (min(enumerate(data), key=lambda x: x[1])[0], max(enumerate(data), key=lambda x: x[1])[0])
 
 
-@takes(list, int, tuple, str)
-def add(a, b):
-    '''add docs'''
-    return a + b
+data = [2, 3, 8, 1, 7]
 
-print(add.__name__)
-print(add.__doc__)
-
-try:
-    print(add(a='a', b='c'))
-except TypeError as e:
-    print(type(e))
+print(get_min_max(data))
 
 
+data = [1, 1, 2, 3, 8, 8]
 
-@takes(str)
-def beegeek(word, repeat):
-    return word * repeat
+print(get_min_max(data))
 
-try:
-    print(beegeek('beegeek', repeat=2))
-except TypeError as e:
-    print(type(e))
+data = []
+print(get_min_max(data))
 
-@takes(int, str)
-def repeat_string(string, times):
-    return string * times
 
-print(repeat_string('bee', 3))
