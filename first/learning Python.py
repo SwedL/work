@@ -1,28 +1,23 @@
 
 
-def get_min_max(iterable):
-    if iterable and isinstance(iterable, list):
-        return sorted(iterable)[0], sorted(iterable)[-1]
-    else:
-        try:
-            minimum, maximum = next(iterable), max(iterable)
-            return minimum, maximum
-        except StopIteration:
-            pass
+
+class CardDeck:
+    def __init__(self):
+        self.suit = ['пики', 'трефы', 'бубны', 'червы']
+        self.nom = ['двойка', 'тройка', 'четверка', 'пятерка', 'шестерка', 'семерка',
+                    'восьмерка', 'девятка', 'десятка', 'валет', 'дама', 'король', 'туз']
+        self.data = [((n, s) for n in self.nom) for s in self.suit]
+        self.index = -1
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        self.index += 1
+        return self.data[self.index]
 
 
-iterable = iter([])
+cards = CardDeck()
 
-print(get_min_max(iterable))
-
-
-iterable = iter(range(10))
-
-print(get_min_max(iterable))
-
-data = iter(range(100_000_000))
-
-print(get_min_max(data))
-iterable = [6, 4, 2, 33, 19, 1]
-
-print(get_min_max(iterable))
+print(next(cards))
+print(next(cards))
