@@ -1,8 +1,11 @@
 
 
-def parse_ranges(ranges):
-    generator_ranges = ranges.split(',')
-    return generator_ranges
+
+def txt_to_dict():
+    with open('D:/planets.txt', 'r', encoding='utf-8') as file:
 
 
-print(*parse_ranges('1-2,4-4,8-10'))
+
+planets = txt_to_dict()
+
+print(next(planets))
