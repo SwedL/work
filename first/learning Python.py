@@ -1,23 +1,26 @@
 
 
 
-class CardDeck:
-    def __init__(self):
-        self.suit = ['пики', 'трефы', 'бубны', 'червы']
-        self.nom = ['двойка', 'тройка', 'четверка', 'пятерка', 'шестерка', 'семерка',
-                    'восьмерка', 'девятка', 'десятка', 'валет', 'дама', 'король', 'туз']
-        self.data = [((n, s) for n in self.nom) for s in self.suit]
-        self.index = -1
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        self.index += 1
-        return self.data[self.index]
 
 
-cards = CardDeck()
+def primes(left, right):
+    list_res = iter(range((left, left+1)[left == 1], right+1))
+    next_simply_number = 2
 
-print(next(cards))
-print(next(cards))
+    for i in list_res:
+        yield i
+
+
+
+
+generator = primes(1, 15)
+print(*generator)
+
+# for num in list_res:
+#     d, count = 2, 0
+#     while d < num and count == 0:
+#         if num % d == 0:
+#             count = 1
+#         d += 1
+#     if count == 0:
+#         next_simply_number.append(num)

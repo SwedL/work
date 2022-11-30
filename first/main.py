@@ -1,12 +1,8 @@
 
 
+def parse_ranges(ranges):
+    generator_ranges = ranges.split(',')
+    return generator_ranges
 
 
-
-
-suit = ['пики', 'трефы', 'бубны', 'червы']
-nom = ['двойка', 'тройка', 'четверка', 'пятерка', 'шестерка', 'семерка',
-                    'восьмерка', 'девятка', 'десятка', 'валет', 'дама', 'король', 'туз']
-data = [((n, s) for n in nom) for s in suit]
-
-print(*data[0])
+print(*parse_ranges('1-2,4-4,8-10'))
