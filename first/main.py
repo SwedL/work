@@ -1,11 +1,14 @@
 
 
 
-def txt_to_dict():
-    with open('D:/planets.txt', 'r', encoding='utf-8') as file:
+
+def pairwise(iterable):
+    prew = next(iterable)
+    for i in iterable:
+        yield
 
 
+numbers = [1, 2, 3, 4, 5]
 
-planets = txt_to_dict()
 
-print(next(planets))
+print(*pairwise(numbers))
