@@ -2,29 +2,28 @@
 
 
 
-from itertools import starmap
-
-
-def roundrobin(*args):
-    list1 = []
-    #list2 =
-    # for i in args:
-    #     starmap(lambda k: list1.append(k), list(enumerate(i)))
-    #     print([enumerate(i)])
-    #     # for k in enumerate(i):
-    #     #     list1.append(k)
-    [list1.append(k) for k in enumerate(i for i in args)]
-    list1.sort(key=lambda x: x[0])
-    print(list1)
-    return starmap(lambda n, c: c, list1)
 
 
 
+def ranges(numbers):
+    list1, list_temp, a = [], [], numbers[0]
+    for i in range(len(numbers)):
+        if a + 1 == numbers[i] or a == numbers[i]:
+            list_temp.append(numbers[i])
+        else:
+            list1.append(list_temp)
+            list_temp = [numbers[i]]
+        a = numbers[i]
+    list1.append(list_temp)
+    return list(map(lambda x: (min(x), max(x)), list1))
 
-print(*roundrobin('abc', 'd', 'ef'))
 
-numbers = [1, 2, 3]
-letters = iter('beegeek')
-print(*roundrobin(numbers, letters))
+numbers = [1, 2, 3, 4, 7, 8, 10]
+print(ranges(numbers))
 
-print(list(roundrobin()))
+numbers = [1, 3, 5, 7]
+print(ranges(numbers))
+
+numbers = [1, 2, 3, 4, 5, 6, 7]
+print(ranges(numbers))
+
