@@ -3,20 +3,23 @@
 import sys
 import re
 
-
-
-
-regex = r'\B(<[a-z]+.*?>)\B'
+regex_teg_with_atr = r'\B(<[a-z]+.*?>)\B'
 
 data = sys.stdin.read()
-match = re.findall(regex, data, re.I)
-print(match)
-regex_k = r'<([a-z]+)\s?'
-regex_v = r'\bw+=\B'
+match = re.findall(regex_teg_with_atr, data, re.I)
 
-for i in match:
+regex_teg = r'<([a-z]+)\s?'
+regex_atr = r'\b(([a-z]+-?)+)='
+dict_res = {}
 
-    print(re.search(regex_k, i))
-    print(re.findall(regex_v, i))
+for i in sorted(match):
+    teg = re.findall(regex_teg, i)[0]
+    atr = re.findall(regex_atr, i)
+    print(teg, atr)
+    dict_res[teg] = dict_res.setdefault(teg, []) + [atr]
+
+
+# for k, v in dict_res.items():
+#     print(f'{k}:', ', '.join(dict.fromkeys(v)))
 
 
