@@ -1,29 +1,17 @@
+from itertools import groupby
 
+KEYBOARD = {
+    "1": "", "2": "abc", "3": "def", "4": "ghi", "5": "jkl",
+    "6": "mno", "7": "pqrs", "8": "tuv", "9": "wxyz", "0": " "
+}
 
+def phone_words(str):
+    ans = []
+    for digit, sequence in filter(lambda x: x[0] != "1", groupby(str)):
+        q, r = divmod(len(list(sequence)), len(KEYBOARD[digit]))
+        if q: ans.append(KEYBOARD[digit][-1] * q)
+        if r: ans.append(KEYBOARD[digit][r - 1])
+        #print(digit, list(sequence))
+    return "".join(ans)
 
-
-
-
-
-def ranges(numbers):
-    list1, list_temp, a = [], [], numbers[0]
-    for i in range(len(numbers)):
-        if a + 1 == numbers[i] or a == numbers[i]:
-            list_temp.append(numbers[i])
-        else:
-            list1.append(list_temp)
-            list_temp = [numbers[i]]
-        a = numbers[i]
-    list1.append(list_temp)
-    return list(map(lambda x: (min(x), max(x)), list1))
-
-
-numbers = [1, 2, 3, 4, 7, 8, 10]
-print(ranges(numbers))
-
-numbers = [1, 3, 5, 7]
-print(ranges(numbers))
-
-numbers = [1, 2, 3, 4, 5, 6, 7]
-print(ranges(numbers))
-
+print(phone_words("559991998888844033348809444444455444660555229988338855"))
