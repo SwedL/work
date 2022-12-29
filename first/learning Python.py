@@ -1,28 +1,23 @@
-
-
-import sys
 import re
-
-regex_teg_with_atr = r'\B(<[a-z]+.*?>)\B'
+import sys
 
 data = sys.stdin.read()
-match = re.findall(regex_teg_with_atr, data, re.I)
+match1 = re.findall(r'(<[a-z]+.*?>)', data, re.I)
+match2 = re.findall(r'(<[a-z]+>)', data, re.I)
 
-regex_teg = r'<([a-z]+)\s?'
+regex_teg = r'<([a-z\d]+)\s?'
 regex_atr = r'\b(([a-z]+-?)+)='
 dict_res = {}
 
-for i in sorted(match):
-   # print(i)
+for i in sorted(match1):
     teg = re.findall(regex_teg, i)[0]
     atr = re.findall(regex_atr, i)
-    dict_res[teg] = []
     for k in atr:
-        print(teg, k)
-        dict_res[teg] = dict_res.get(teg) + [list(k)[0]]
+        dict_res.setdefault(teg, []).append(list(k)[0])
 
-print(dict_res)
-# for k, v in dict_res.items():
-#     print(f'{k}:', ', '.join(sorted(dict.fromkeys(v))))
+for i in sorted(match2):
+    teg = re.findall(regex_teg, i)[0]
+    dict_res.setdefault(teg, [])
 
-
+for k, v in sorted(dict_res.items()):
+    print(f'{k}:', ', '.join(sorted(dict.fromkeys(v))))
