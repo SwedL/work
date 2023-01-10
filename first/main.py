@@ -1,13 +1,14 @@
-from itertools import permutations
+# import random
+#
+# def init(N, M):
+#     list1 = [True for _ in range(M)] + [False for _ in range(N ** 2)][M:]
+#     random.shuffle(list1)
+#     return list1
+#
+# print(init(4, 5))
+# print(len(init(4, 5)))
 
-
-
-y = int(input())
-
-if isinstance(y, int | float):
-    print('int или float', type(y), y)
-else:
-    print('не int и не float')
+print(*range(-1, -5, -1))
 
 
 
